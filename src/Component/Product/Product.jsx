@@ -27,8 +27,7 @@ function Product() {
         <Loader />
       ) : (
         <section className={classes.products_container}>
-          {
-          products?.map((singleProduct) => {
+          {products?.map((singleProduct) => {
             return (
               <ProductCard
                 product={singleProduct}
@@ -36,8 +35,7 @@ function Product() {
                 renderAdd={true}
               />
             );
-          })
-          }
+          })}
         </section>
       )}
     </>

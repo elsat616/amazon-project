@@ -8,6 +8,9 @@ import CurrencyFormat from "../CurrencyFormat/CurrencyFormat";
 import Rating from "@mui/material/Rating";
 
 function ProductCard({ product, flex, renderDesc, renderAdd, amount }) {
+  if (!product || !product.image) {
+    return null; // or return a placeholder component or default content
+  }
 
   const { image, title, id, rating, price, description } = product;
   const [state, dispatch] = useContext(DataContext);
