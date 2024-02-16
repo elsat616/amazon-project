@@ -40,13 +40,13 @@ body {
   /* transition: transform 0.5s ease-in-out; */
 }
 
-/* .sidenavHeader {
+.sidenavHeader {
   color: white;
   font-weight: bold;
   background-color: rgb(35, 47, 62);
   padding: 10px 0px 10px 30px;
   font-size: 23px;
-} */
+}
 
 .sidenavContentHeader {
   margin-top: 5px;
