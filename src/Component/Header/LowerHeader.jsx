@@ -1,12 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { IoMenu } from "react-icons/io5";
 import classes from "./header.module.css";
 
-function LowerHeader() {
+function LowerHeader(props) {
   return (
     <div className={classes.lower_container}>
       <ul>
-        <li>
+        <li onClick={props.click} className={classes.hamberger_btn}>
           <IoMenu />
           <p>All</p>
         </li>

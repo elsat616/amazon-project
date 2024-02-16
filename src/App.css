@@ -1,0 +1,29 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+background_page_container{
+    position: absolute;
+    top: 0;
+    left: 0;
+    min-width: 100vw;
+    min-height: 100vh;
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: -100;
+}
+
+.background_page_container p{
+    font-size: 40px;
+}
+.background_page_container img{
+    margin-top: 20px;
+    height: auto;
+    width: 80%;
+    max-width: 800px;
+}

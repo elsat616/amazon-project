@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import classes from "./header.module.css";
 import { CiLocationOn } from "react-icons/ci";
 import { IoSearch } from "react-icons/io5";
@@ -6,13 +6,23 @@ import { BiCart } from "react-icons/bi";
 import LowerHeader from "./LowerHeader";
 import { Link } from "react-router-dom";
 import { DataContext } from "../DataProvider/DataProvider";
-import {auth} from "../../Utility/firebase"
+import { auth } from "../../Utility/firebase";
+import Sidebar from "./Sidebar";
+import { Transition } from "react-transition-group";
 
 function Header() {
   const [{ user, basket }, dispatch] = useContext(DataContext);
   const totalItem = basket?.reduce((amount, item) => {
     return item.amount + amount;
   }, 0);
+
+  const [navOpen, setNavOpen] = useState(false);
+  const openNav = () => {
+    setNavOpen(true);
+  };
+  const closeNav = () => {
+    setNavOpen(false);
+  };
 
   return (
     <section className={classes.fixed}>
@@ -59,7 +69,7 @@ function Header() {
                 {user ? (
                   <>
                     <p>Hello {user?.email?.split("@")[0]}</p>
-                    <span onClick={()=>auth.signOut()}>Sign Out</span>
+                    <span onClick={() => auth.signOut()}>Sign Out</span>
                   </>
                 ) : (
                   <>
@@ -80,7 +90,45 @@ function Header() {
           </div>
         </div>
       </section>
-      <LowerHeader />
+      <LowerHeader click={openNav} />
+      <Transition
+        in={navOpen}
+        mountOnEnter
+        unmountOnExit
+      >
+        {(state) => {
+          return (
+            <>
+              <Sidebar state={state} />
+              <div
+                className={classes.overlay}
+                style={
+                  state === "entering"
+                    ? { animation: "show .3s forwards" }
+                    : state === "entered"
+                    ? { opacity: "1" }
+                    : { animation: "show .3s reverse forwards" }
+                }
+                onClick={closeNav}
+              ></div>
+
+              <div
+                className={classes.closeBtn}
+                style={
+                  state === "entering"
+                    ? { animation: "show .3s forwards" }
+                    : state === "entered"
+                    ? { opacity: "1" }
+                    : { animation: "show .3s reverse forwards" }
+                }
+                onClick={closeNav}
+              >
+                &times;
+              </div>
+            </>
+          );
+        }}
+      </Transition>
     </section>
   );
 }
