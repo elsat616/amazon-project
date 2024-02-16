@@ -162,12 +162,12 @@
 }
 
 /* sidebar css */
-.hamberger_btn {
+/* .hamberger_btn {
   font-size: 20px;
   margin: 20px 0 0 20px;
   cursor: pointer;
   display: inline-block;
-}
+} */
 
 .sidenav {
   max-width: 380px;
